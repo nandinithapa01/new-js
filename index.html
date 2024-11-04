@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shuffle List</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: lightyellow;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        list-style-type: none;
+        max-width: 720px;
+        margin: 1rem 0;
+        padding: 0;
+      }
+      ul li {
+        background-color: #ffffb9;
+        padding: 1rem;
+        border-radius: 4px;
+        box-shadow: 0 0 18px #debf7722;
+      }
+      li p {
+        background-color: #bf6f1a;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 0.5rem 1rem;
+        color: white;
+        margin-bottom: 1rem;
+      }
+      li img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto 1rem auto;
+      }
+      #shuffle {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #ffffb9;
+        color: black;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <button id="shuffle">Shuffle</button>
+    <script>
+      const data = [
+        {
+          name: "Alien Red",
+          price: 100,
+          image:
+            "https://www.imagelabmedspa.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fq3mxrizp%2Fproduction%2F6635918edb51de3393fe7870139574c3f8f21773-1254x836.jpg&w=1920&q=75",
+        },
+        {
+          name: "Ak47 Victoria",
+          price: 129,
+          image:
+            "https://www.imagelabmedspa.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fq3mxrizp%2Fproduction%2F70608bb057bbcece1535255c22236ed3e76f870d-1254x836.jpg&w=3840&q=75",
+        },
+        {
+          name: "Glock-18 Oxide Blaze",
+          price: 28,
+          image:
+            "https://www.imagelabmedspa.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fq3mxrizp%2Fproduction%2F797404f4235855358f88751f8059b580880ac21a-1253x836.jpg&w=1920&q=75",
+        },
+        {
+          name: "Galil AR",
+          price: 89,
+          image:
+            "https://www.imagelabmedspa.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fq3mxrizp%2Fproduction%2Fd76d14b69f08ac20734623dddd2c79b7d9336f4e-1254x836.jpg&w=1920&q=75",
+        },
+        {
+          name: "PS250 Boreal Forest",
+          price: 81,
+          image:
+            "https://cdn.sanity.io/images/q3mxrizp/production/29ca0e0bbc00bda46eac959f915051c1bd1ac2b4-1080x1080.jpg",
+        },
+        {
+          name: "Souvenir MP9",
+          price: 19,
+          image:
+            "https://www.imagelabmedspa.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fq3mxrizp%2Fproduction%2F88f4b1ae4adf0ecc56be9966532f6a41a116a4fe-1254x836.jpg&w=3840&q=75",
+        },
+      ];
+      const list = document.getElementById("list");
+      function renderItems(data) {
+        list.innerHTML = "";
+        data.forEach((item) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h4>${item.name}</h4>
+          <p>Price: ${item.price}</p>`;
+          list.appendChild(listItem);
+        });
+      }
+      document.getElementById("shuffle").addEventListener("click", () => {
+        const sortedData = [...data].sort((a, b) => a.price - b.price);
+        renderItems(sortedData);
+      });
+      renderItems(data);
+    </script>
+  </body>
+</html>
